@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-// const cors = require('cors');
+const cors = require('cors');
 const db = mongoose.connection;
 
 const holidaysController = require('./controllers/holidays');
@@ -28,8 +28,8 @@ db.on('disconnected', () => console.log('mongo disconnected'));
 // open the connection to mongo
 db.on('open', () => { });
 
-/*
-const whitelist = ['http://localhost:3000']
+
+const whitelist = ['http://localhost:3000', 'https://holiday-app-api.herokuapp.com']
 const corsOptions = {
     origin: function (origin, callback) {
         if (whitelist.indexOf(origin) !== -1) {
@@ -39,9 +39,9 @@ const corsOptions = {
         }
     }
 }
-*/
 
-// APP.use(cors(corsOptions));
+
+APP.use(cors(corsOptions));
 
 APP.use(express.json());
 
